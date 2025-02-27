@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 IMAGE_FOLDER = "./images"
 
 # 📌 Années disponibles
-ANNEES_DISPONIBLES = ["2014", "2021", "2022", "2023"]
+ANNEES_DISPONIBLES = ["2014","2015","2016","2017","2018","2019","2020","2021", "2022", "2023"]
 
 # 🎨 STYLE DU SIDEBAR
 st.sidebar.markdown("<h1 style='text-align: center;'>🛰️ Dashboard NDVI & NDWI</h1>", unsafe_allow_html=True)
@@ -24,7 +24,7 @@ st.sidebar.markdown("---")
 #st.sidebar.markdown("👨‍💻 **Développé par [Ton Nom]**")
 st.sidebar.markdown("📅 **Années disponibles :** 2014,2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023")
 
-st.title("🛰️ Fleuve Nakambé et impact du barrage de Bagré sur l'agriculture")
+st.title("🛰️ Fleuve Nakambé : Eau et végétation")
 
 # 🔄 Fonction pour charger une image
 def charger_image(annee):
@@ -85,13 +85,17 @@ elif partie == "📊 Évolution des indices":
     st.subheader("📊 Évolution des indices NDVI & NDWI")
 
     # 🔹 Remplace ces valeurs par tes données réelles
-    ndvi_min = {"2014": -0.2137, "2021": -0.2256, "2022": -0.1945, "2023": -0.2404}
-    ndvi_max = {"2014": 0.3958, "2021": 0.2974, "2022": 0.3309, "2023": 0.4513}
-    ndvi_seuil = {"2014": 0.17, "2021": 0.15, "2022": 0.13, "2023": 0.15}  # 🚨 Valeur seuil NDVI
+    ndvi_min = {"2014": -0.2137,"2015": -0.1590,"2016": -0.2245,"2017": -0.2581,"2018": -0.1916,"2019": -0.2323,"2020": -0.1993, "2021": -0.2256, "2022": -0.1945, "2023": -0.2404}
 
-    ndwi_min = {"2014": -0.3616, "2021": -0.3108, "2022": -0.3183, "2023": -0.4208}
-    ndwi_max = {"2014": 0.2727, "2021": 0.1924, "2022": 0.1465, "2023": 0.2298}
-    ndwi_seuil = {"2014": 0, "2021": 0, "2022": 0, "2023": 0}  # 🚨 Valeur seuil NDWI
+    ndvi_max = {"2014": 0.3958,"2015": 0.1760,"2016": 0.2580,"2017": 0.3514,"2018": 0.4251,"2019": 0.2949,"2020": 0.3407, "2021": 0.2974, "2022": 0.3309, "2023": 0.4513}
+
+    ndvi_seuil = {"2014": 0.17,"2015": 0.12,"2016": 0.13,"2017": 0.15,"2018": 0.15,"2019": 0.15,"2020": -0.15, "2021": 0.15, "2022": 0.13, "2023": 0.15} 
+
+    ndwi_min = {"2014": -0.3616,"2015": -0.2307,"2016": -0.2823,"2017": -0.3632,"2018": -0.3814,"2019": -0.3633,"2020": -0.3347, "2021": -0.3108, "2022": -0.3183, "2023": -0.4208}
+
+    ndwi_max = {"2014": 0.2727,"2015": 0.1362,"2016": 0.1864,"2017": 0.2307,"2018": 0.1717,"2019": 0.3157,"2020": 0.2737, "2021": 0.1924, "2022": 0.1465, "2023": 0.2298}
+
+    ndwi_seuil = {"2014": 0,"2015": -0.08,"2016": 0.04,"2017": 0.05,"2018": 0.04,"2019": 0.0,"2020": 0.0, "2021": 0, "2022": 0, "2023": 0} 
 
     # 📈 Graphiques des plages NDVI & NDWI avec ligne rouge pour la valeur seuil
     fig, ax = plt.subplots(1, 2, figsize=(12, 5))
