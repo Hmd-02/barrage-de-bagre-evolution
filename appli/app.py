@@ -1,19 +1,20 @@
 import streamlit as st
 import os
 from PIL import Image
+from io import BytesIO
 import matplotlib.pyplot as plt
 
 # 📂 Dossier contenant les cartes exportées
-IMAGE_FOLDER = "images"
+IMAGE_FOLDER = "images"  # Assurez-vous que ce dossier est bien dans le repo GitHub
 
 # 📌 Années disponibles
-ANNEES_DISPONIBLES = ["2014","2015","2016","2017","2018","2019","2020","2021", "2022", "2023"]
+ANNEES_DISPONIBLES = ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
 
 # 🎨 STYLE DU SIDEBAR
 st.sidebar.markdown("<h1 style='text-align: center;'>🛰️ Dashboard NDVI & NDWI</h1>", unsafe_allow_html=True)
 st.sidebar.markdown("---")
 
-# 📌 Sélection de la partie avec un design plus attractif
+# 📌 Sélection de la partie
 partie = st.sidebar.radio(
     "📌 **Choisissez une analyse :**",
     ["📍 Visualisation", "🔄 Comparaison", "📊 Évolution des indices"],
@@ -21,41 +22,39 @@ partie = st.sidebar.radio(
 )
 
 st.sidebar.markdown("---")
-#st.sidebar.markdown("👨‍💻 **Développé par [Ton Nom]**")
-st.sidebar.markdown("📅 **Années disponibles :** 2014,2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023")
+st.sidebar.markdown("📅 **Années disponibles :** 2014 - 2023")
 
 st.title("🛰️ Fleuve Nakambé : Eau et végétation")
 
 # 🔄 Fonction pour charger une image
 def charger_image(annee):
     chemin = os.path.join(IMAGE_FOLDER, f"Carte_{annee}.png")
-    return Image.open(chemin) if os.path.exists(chemin) else None
+    if os.path.exists(chemin):  # Vérification d'existence
+        return Image.open(chemin)
+    else:
+        st.warning(f"⚠️ L'image pour {annee} est introuvable ! Vérifiez le dossier `{IMAGE_FOLDER}`.")
+        return None
 
 # 🔹 PARTIE 1 : Visualisation simple
 if partie == "📍 Visualisation":
     st.subheader("📍 Visualisation d’une carte par année")
     annee = st.select_slider("Sélectionner une année :", ANNEES_DISPONIBLES)
-    
-    from io import BytesIO
 
-    # Charger l'image
     img = charger_image(annee)
     if img:
-        st.image(img, caption=f"🗺️ Carte - {annee}", use_container_width=True)
+        st.image(img, caption=f"🗺️ Carte - {annee}", use_column_width=True)
 
-        # Sauvegarde correcte dans un buffer mémoire
+        # Sauvegarde correcte pour le téléchargement
         img_buffer = BytesIO()
-        img.save(img_buffer, format="PNG")  # Assure le bon format
+        img.save(img_buffer, format="PNG")
         img_bytes = img_buffer.getvalue()
 
-        # Bouton de téléchargement fonctionnel
         st.download_button(
             label=f"📥 Télécharger la carte {annee}",
             data=img_bytes,
             file_name=f"Carte_{annee}.png",
-            mime="image/png"  # Spécifier le bon type MIME
+            mime="image/png"
         )
-
 
 # 🔹 PARTIE 2 : Superposition de cartes
 elif partie == "🔄 Comparaison":
