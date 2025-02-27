@@ -42,7 +42,7 @@ if partie == "📍 Visualisation":
 
     img = charger_image(annee)
     if img:
-        st.image(img, caption=f"🗺️ Carte - {annee}", use_column_width=True)
+        st.image(img, caption=f"🗺️ Carte - {annee}", use_container_width=True)
 
         # Sauvegarde correcte pour le téléchargement
         img_buffer = BytesIO()
