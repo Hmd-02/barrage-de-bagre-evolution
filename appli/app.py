@@ -28,7 +28,7 @@ st.title("🛰️ Fleuve Nakambé : Eau et végétation")
 
 # 🔄 Fonction pour charger une image
 def charger_image(annee):
-    chemin = os.path.join(IMAGE_FOLDER, f"Carte_{annee}.png")
+    chemin = os.path.join(IMAGE_FOLDER, f"Carte_{annee}.jpg")
     if os.path.exists(chemin):  # Vérification d'existence
         return Image.open(chemin)
     else:
