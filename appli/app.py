@@ -5,7 +5,7 @@ from io import BytesIO
 import matplotlib.pyplot as plt
 
 # 📂 Dossier contenant les cartes exportées
-IMAGE_FOLDER = "images/"  # Assurez-vous que ce dossier est bien dans le repo GitHub
+IMAGE_FOLDER = "./images/"  # Assurez-vous que ce dossier est bien dans le repo GitHub
 
 # 📌 Années disponibles
 ANNEES_DISPONIBLES = ["2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
