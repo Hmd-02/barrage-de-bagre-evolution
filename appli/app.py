@@ -32,7 +32,7 @@ def charger_image(annee):
     if os.path.exists(chemin):  # Vérification d'existence
         return Image.open(chemin)
     else:
-        st.warning(f"⚠️ L'image pour {annee} est introuvable ! Vérifiez le dossier `{IMAGE_FOLDER}`.")
+        st.warning(f"⚠️ L'image pour {chemin} est introuvable ! Vérifiez le dossier `{IMAGE_FOLDER}`.")
         return None
 
 # 🔹 PARTIE 1 : Visualisation simple
