@@ -4,7 +4,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 # 📂 Dossier contenant les cartes exportées
-IMAGE_FOLDER = "./images"
+IMAGE_FOLDER = "images"
 
 # 📌 Années disponibles
 ANNEES_DISPONIBLES = ["2014","2015","2016","2017","2018","2019","2020","2021", "2022", "2023"]
